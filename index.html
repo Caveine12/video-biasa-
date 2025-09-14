@@ -27,37 +27,19 @@
   </style>
 </head>
 <body>
-  <video id="myVideo" autoplay muted playsinline style="width:100%; max-width:600px;">
-    <source src="video.mp4" type="video/mp4">
-    Browser kamu tidak mendukung video.
-  </video>
+  <video id="vid" autoplay muted playsinline>
+  <source src="video.mp4" type="video/mp4">
+</video>
 
-  <button id="play-btn">▶️ Putar dengan Volume Penuh</button>
+<button onclick="unmute()">Aktifkan Suara</button>
 
-  <script>
-    const video = document.getElementById('myVideo');
-    const btn = document.getElementById('play-btn');
-
-    btn.addEventListener('click', async () => {
-      try {
-        video.muted = false;
-        video.volume = 1; // setel volume penuh
-
-        // Minta fullscreen
-        if (video.requestFullscreen) {
-          await video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) { 
-          await video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
-          await video.msRequestFullscreen();
-        }
-
-        await video.play(); // pastikan video terus jalan
-        btn.style.display = 'none'; // hilangkan tombol
-      } catch (err) {
-        console.error("Gagal masuk fullscreen atau putar video:", err);
-      }
-    });
-  </script>
+<script>
+function unmute() {
+  const v = document.getElementById('vid');
+  v.muted = false;
+  v.volume = 1;  // sekarang ini benar-benar akan di-set
+  v.play();
+}
+</script>
 </body>
 </html>
